@@ -28,7 +28,10 @@ angular.module('app').controller('vCtrl', ['$scope', '$http', '$routeParams', '$
   $scope.parent = parent;
   $scope.child = child;
   $scope.uid = uid;
-  
+
+  $scope.is_en_caption = false;
+  $scope.is_ko_caption = false;
+
   $http.get(_url).
     success(function(data, status, headers, config) {
       //console.log(data);
@@ -50,6 +53,14 @@ angular.module('app').controller('vCtrl', ['$scope', '$http', '$routeParams', '$
       //var sub_ko = 'https://s3-ap-northeast-1.amazonaws.com/helpme2/dd.vtt';
       var sub = res_url + v.sub;
       var sub_ko = res_url + v.sub_ko;
+      
+      if(v.sub != 'none') {
+	$scope.is_en_caption = true;
+      }
+      if(v.sub_ko != 'none') {
+	$scope.is_ko_caption = true;
+      }
+      
       var opacity = 65;
       if(v.parent == 'news' & v.child == 'CNN') {
 	opacity = 85;
@@ -181,6 +192,9 @@ angular.module('app').controller('vCtrl', ['$scope', '$http', '$routeParams', '$
   };
 
   $scope.goNext = function() {
+    //console.log(jwplayer('pp2').getCurrentCaptions());
+    //jwplayer('pp2').setCurrentCaptions(2);
+    return;
     var url = 'http://v.05day.com/#/v/' + $scope.parent + '/' + $scope.child + '/' + $scope.next + '/' + $scope.uid;
     window.location.assign(url);
   };
@@ -204,6 +218,17 @@ angular.module('app').controller('vCtrl', ['$scope', '$http', '$routeParams', '$
       $scope.quizText = '한글퀴즈 풀기';
       quizService2.resetValue();
     }
+  };
+
+
+
+
+  $scope.changeCaption = function(index) {
+    var length = jwplayer('pp2').getCaptionsList().length;
+    if(index > length) {
+      return;
+    }
+    jwplayer('pp2').setCurrentCaptions(index);
   };
 
 }]);
