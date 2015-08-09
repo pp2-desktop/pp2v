@@ -1,0 +1,59 @@
+<!--
+<div style="padding:0px 0px 5px 0px; font-size:90%" ng-bind-html="qna[0].question"></div>
+<div style="padding-left:10px" ng-repeat="option in qna[0].options">
+  <div class="radio">
+    <label> 
+      <input type="radio" name="{{qna[0].tag}}" value="{{option.text}}" ng-model="qna[0].tag" ng-change="evalScore(qna[0].id, option.text)"/>    
+      <div ng-style="{'background-color': option.style}">
+	<span style="font-size:90%">{{option.text}}</span>
+      </div>
+
+    </label>
+  </div>
+</div>
+-->
+
+
+<div style="padding-left:10px" ng-repeat="opt in qna">
+  <div style="padding:0px 0px 0px 0px; font-size:90%" ng-bind-html="opt.question">
+  </div>
+
+  <div style="padding-left:10px" ng-repeat="option in opt.options">
+    <div class="radio">
+      <label> 
+	<input type="radio" name="{{opt.tag}}" value="{{option.text}}" ng-model="opt.id" ng-change="evalScore(opt, option.text)"/>
+    
+	<div ng-style="{'background-color': option.style}">
+
+	  <span style="font-size:90%">{{option.text}}</span>
+
+	  <!--
+	  <div ng-if="$index == 0">
+	    <span style="font-size:90%"><b>a.</b> {{option.text}}</span>
+	  </div>
+
+	  <div ng-if="$index == 1">
+	    <span style="font-size:90%"><b>b.</b> {{option.text}}</span>
+	  </div>
+
+	  <div ng-if="$index == 2">
+	    <span style="font-size:90%"><b>c.</b> {{option.text}}</span>
+	  </div>
+
+	  <div ng-if="$index == 3">
+	    <span style="font-size:90%"><b>d.</b> {{option.text}}</span>
+	  </div>
+
+	  <div ng-if="$index == 4">
+	    <span style="font-size:90%"><b>e.</b> {{option.text}}</span>
+	  </div>
+	  -->
+	</div>
+
+      </label>
+    </div>
+  </div>
+
+  <div style="padding-bottom:20px"> </div>
+
+</div>

@@ -1,0 +1,55 @@
+
+<div class="fixed" ng-if="is_loading_done == true">
+  <div id="container2" class="">
+
+    <div ng-if="is_theater_mode != true">
+      <canvas width="1600" height="900"></canvas>
+    </div>
+
+    <div ng-if="is_theater_mode == true">
+      <canvas width="1000" height="900"></canvas>
+    </div>
+    <jwplayer width="1600" height="900" setup="options"></jwplayer>
+
+
+
+  </div>
+</div>
+
+
+<div ng-if="is_video_enable == true">
+  <div id="container2" class="">
+    <div ng-if="is_theater_mode != true">
+      <canvas width="1600" height="900"></canvas>
+    </div>
+    <div ng-if="is_theater_mode == true">
+      <canvas width="1000" height="900"></canvas>
+    </div>
+  </div>
+</div>
+
+<div class="between"></div>
+
+    <accordion>
+      <accordion-group is-open="status.open">
+	<accordion-heading>
+         <b>{{ myString | limitTo: 27 }}{{myString.length > 27 ? '...' : ''}} <b> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+	</accordion-heading>
+	<button type="button" class="btn btn-info" aria-label="Left Align" ng-click="back()">
+	    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+	</button>
+
+	<a type="button" class="btn btn-primary" aria-label="Left Align" ng-href="http://112.219.140.178:3000/#/peppa/1/{{prev_ep}}/{{uid}}" class="btn btn-lg btn-success" >이전회</a>
+
+	<a type="button" class="btn btn-danger" aria-label="Left Align" ng-href="http://112.219.140.178:3000/#/peppa/1/{{next_ep}}/2" class="btn btn-lg btn-success" >다음회</a>
+
+
+
+
+      </accordion-group>
+    </accordion>
+
+
+  <div class="col-sm-12 no-space">
+    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa
+  </div>

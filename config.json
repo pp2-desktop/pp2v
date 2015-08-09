@@ -1,0 +1,5 @@
+{ 
+  "db": {"mongo": "mongodb://n.05day.com:27017/pp2-db"},
+  "vdb": {"mongo": "mongodb://n.05day.com:27017/pp2-u"},
+  "db2": {"mongo": "mongodb://pp2:badagl9721@ds031531.mongolab.com:31531/pp2-db"}
+}

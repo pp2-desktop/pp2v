@@ -1,0 +1,177 @@
+
+<div class="fixed" ng-if="is_loading_done == true">
+  <div id="container2" class="">
+
+    <div ng-if="is_theater_mode != true">
+      <canvas width="1600" height="900"></canvas>
+    </div>
+
+    <div ng-if="is_theater_mode == true">
+      <canvas width="1000" height="900"></canvas>
+    </div>
+    <jwplayer width="1600" height="900" setup="options"></jwplayer>
+
+
+
+  </div>
+</div>
+
+
+<div ng-if="is_video_enable == true">
+  <div id="container2" class="">
+    <div ng-if="is_theater_mode != true">
+      <canvas width="1600" height="900"></canvas>
+    </div>
+    <div ng-if="is_theater_mode == true">
+      <canvas width="1000" height="900"></canvas>
+    </div>
+  </div>
+</div>
+
+<div class="between"></div>
+
+
+<!--
+<div ng-repeat="s in style">
+  {{s}}
+</div>
+-->
+
+
+<div style="margin-right:4px; margin-left: 4px;">
+  <!-- 상단 버튼 -->
+  <accordion>
+    <accordion-group is-open="status.open">
+      <accordion-heading>
+	<span style="font-size:80%">
+	  <!--
+	<b> 제목: {{ myString | limitTo: 40 }}{{myString.length > 40 ? '...' : ''}} </b> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+	  -->
+	  <b> {{ myString | limitTo: 40 }}{{myString.length > 40 ? '...' : ''}} </b> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+	</span>
+      </accordion-heading>
+
+      <button type="button" class="btn-xs btn-info" aria-label="Left Align" ng-click="back()">
+	<span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+      </button>
+
+      <span ng-if="prev != ''">
+	<button type="button" class="btn-xs btn-primary" aria-label="Left Align" ng-click="goPrev()" style="margin-left:5px" ng-disabled="is_loading_done != true">이전회</button>
+      </span>
+
+      <span ng-if="next != ''">
+	<button type="button" class="btn-xs btn-danger" aria-label="Left Align" ng-click="goNext()" ng-if="next != ''" style="margin-left:5px" ng-disabled="is_loading_done != true">다음회</button>
+      </span>
+
+    </accordion-group>
+  </accordion>
+
+  <div style="margin-bottom:10px;"> </div>
+
+  <!-- 단어 -->
+  <accordion>
+    <accordion-group is-open="word_status.open">
+      <accordion-heading>
+	<span style="font-size:80%">
+	  <b>필수 단어 <b> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': word_status.open, 'glyphicon-chevron-right': !word_status.open}"></i>
+	</span>
+      </accordion-heading>
+
+      <accordion>
+
+	<div ng-if="is_loading_done != true">
+	  <wave-spinner></wave-spinner>
+	  <h4 align="center">Loading...</h4>
+	</div>
+
+	<accordion-group ng-repeat="word in words" class="panel-title"  is-open="word.is_open">
+	  <accordion-heading>
+            <span style="font-size:75%"><b> {{$index+1}}. {{word.word}} - {{word.type}}</b> 	  <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': word.is_open, 'glyphicon-chevron-right': !word.is_open}"></i>
+	    </span>
+	  </accordion-heading>
+          <p style="font-size:70%"> 뜻:&nbsp {{word.def}} <img ng-src="{{word.img}}" alt="{{word.title}}" height="50" width="50" align="right"> <button ng-click="playAudio($index);" class="btn-xs btn-warning" style="margin-left:5px">
+	    <i class="glyphicon glyphicon-volume-up icon text-info-lter"></i>
+	  </button></p>
+          <p style="font-size:70%"> 예제:&nbsp{{word.example}}</p>
+          <p style="font-size:70%"> 번역:&nbsp{{word.example_ko}}</p>
+	  <audio id="audio1ng-{{$index}}">
+	    <source data-ng-src="{{audios[$index]}}" type="audio/mpeg">
+          </audio>
+	</accordion-group>
+      </accordion> 
+
+
+    </accordion-group>
+  </accordion>
+
+  <div style="margin-bottom:10px;"> </div>
+  <!-- 퀴즈 -->
+  <accordion>
+    <accordion-group is-open="quiz_status.open">
+      <accordion-heading>
+	<span style="font-size:80%">
+	  <b> 퀴즈 <b> 
+	    <div class="btn-group">
+
+	    </div>
+<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': quiz_status.open, 'glyphicon-chevron-right': !quiz_status.open}"></i>
+	</span>
+      </accordion-heading>
+
+      <div>
+	<div style="padding-bottom:15px"> </div>
+	<div ng-if="is_ko_quiz == true">
+	  <button class="btn-xs btn-warning" ng-click="changeTypequiz()" style="float:right; margin-bottom:10px;">{{quizText}}</button>
+	</div>
+	
+        <table style="width:100%">
+          <tr ng-repeat="q in quiz_container">
+            <td>
+              <iquestion2 text="{{q}}"></iquestion2>
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      <div ng-if="is_loading_done == true">
+	<div ng-if="quizType == 'en'">
+	  <iscorecard2 my-cnt="is_hide_memo"></iscorecard2>
+	</div>
+	<div ng-if="quizType == 'ko'">
+	  <iscorecard2></iscorecard2>
+	</div>
+      </div>
+
+    </accordion-group>
+  </accordion>
+
+  <div style="margin-bottom:10px;"> </div>
+  <!-- 메모 -->
+  <accordion>
+    <accordion-group is-open="memo_status.open">
+      <accordion-heading>
+	<span style="font-size:80%">
+	  <b> 메모 <b> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': memo_status.open, 'glyphicon-chevron-right': !memo_status.open}"></i>
+	</span>
+      </accordion-heading>
+
+      <div ng-if="m.is_hide_memo != true">
+	<div style="font-size:80%;font-weight:normal;line-height:18px;" dynamic="memo"></div>
+      </div>
+      <div ng-if="m.is_hide_memo == true">
+	<p style="font-size:80%"> 퀴즈를 푸셔야 메모를 확인하실 수 있는 강좌입니다.</p>
+      </div>
+
+    </accordion-group>
+  </accordion>
+  <div style="margin-bottom:10px;"> </div>
+</div>
+
+
+
+
+<!-- 
+<div class="col-sm-12 no-space">
+  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaa
+</div>
+-->

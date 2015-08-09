@@ -1,0 +1,71 @@
+<!--
+<div class="panel panel-primary" style="border-color: #B6AFAF">
+  <div class="panel-heading">
+    <p class="panel-title" style="color:black;  font-size:90%">퀴즈 결과</p>
+  </div>
+  <div class="panel-body">
+
+    <p>
+      질문의 총 갯수: <b>{{totalQuestions}}</b>
+    </p>
+    <p>
+      답변한 질문 갯수: <b>{{questionsAttempted}}</b>
+    </p>
+    <div ng-show="showscores"  style="padding-top:0px">
+      <p>
+	정답 갯수: <b>{{correctAnswers}}</b>
+      </p>
+      <p>
+	총 점수: <b>{{score}}/{{totalQuestions}}</b>
+      </p>
+    </div>
+    <div style="padding-top:10px">
+      <input type="button" class="btn btn-sm btn-success" name="score" value="Show Score" ng-click="showScores()"/>
+      <input type="button" style="background-color:#A9A9A9;border-color:#A9A9A9" class="btn btn-sm btn-warning" name="rightanswer" value="Show Answers" ng-click="showAnswers()"/>
+    </div>
+  </div>
+</div>
+-->
+
+<accordion>
+  <accordion-group is-open="true">
+    <accordion-heading>
+      <div ng-if="showscores!=true">
+	<span style="font-size:80%">
+	  결과 보기
+	</span>
+      </div>
+      <div ng-if="showscores==true">
+	<span style="font-size:80%">
+	  퀴즈 결과
+	</span>
+      </div>
+    </accordion-heading>
+    
+    <p style="font-size:85%">
+      질문의 총 갯수: <b>{{totalQuestions}}</b>
+    </p>
+    <p style="font-size:85%">
+      답변한 질문 갯수: <b>{{questionsAttempted}}</b>
+    </p>
+    <div ng-show="showscores"  style="padding-top:0px">
+      <p style="font-size:85%">
+	정답 갯수: <b>{{correctAnswers}}</b>
+      </p>
+      <p style="font-size:85%">
+	총 점수: <b>{{score}}/{{totalQuestions}} = <span style="font-size:120%;"> {{grade}}</span>점</b> 
+      </p>
+    </div>
+
+    <!--
+    <div ng-if="showscores==true">
+      <button type="button" class="btn-xs btn-success" aria-label="Left Align" ng-click="showAnswers()" style="margin-left:5px; float:right;">정답확인</button>
+    </div>
+    <button type="button" class="btn-xs btn-info" aria-label="Left Align" ng-click="showScores()" style="margin-left:5px; float:right;" ng-disabled="is_check_result">결과보기</button>
+    -->
+    <div ng-if="showscores!=true">
+      <button type="button" class="btn-xs btn-success" aria-label="Left Align" ng-click="showScores()" style="margin-left:5px; float:right;" ng-disabled="is_check_result">결과보기</button>
+    </div>
+
+  </accordion-group>
+</accordion>

@@ -1,0 +1,89 @@
+
+<div class="modal-header">
+  <h3 class="modal-title">도전 콘텐츠 제출</h3>
+</div>
+
+<div class="modal-body">
+
+  <h4> <b>이벤트 기간</b></h4>
+  
+  <p><b> 시작 : {{begin | date:'yyyy년 MM월 dd일 HH시 mm분'}}</b></p>
+  <p><b> 종료 : {{end | date:'yyyy년 MM월 dd일 HH시 mm분'}}</b></p>
+
+  <hr>
+
+  <h4> <b>보상 내역</b> </h4>
+
+  <form class="form-inline">
+
+    <div class="form-group">
+      <label for="exampleInputName2">Stage1: </label> &nbsp
+      <input style="width:50px" type="text" class="form-control" ng-model="stage_items[0]" disabled="disabled" only-num>
+      <label for="exampleInputName2">Stage2: </label> &nbsp
+      <input style="width:50px" type="text" class="form-control" ng-model="stage_items[1]" disabled="disabled" only-num>
+
+      <label for="exampleInputName2">Stage3: </label> &nbsp
+      <input style="width:50px" type="text" class="form-control" ng-model="stage_items[2]" disabled="disabled" only-num>
+      <label for="exampleInputName2">Stage4: </label> &nbsp
+      <input style="width:50px" type="text" class="form-control" ng-model="stage_items[3]" disabled="disabled" only-num>
+
+    </div>
+  </form>
+
+  <hr>
+
+  
+  <div ng-repeat="item in items">
+
+
+    <form class="form-inline">
+
+      <div class="form-group">
+	<b> {{$index+1}}. </b> &nbsp&nbsp
+
+	<label for="exampleInputName2">Star: </label> &nbsp
+	<input style="width:80px" type="text" class="form-control" ng-model="item.star" disabled="disabled" only-num>
+
+	&nbsp&nbsp
+	<b>Reward: </b> &nbsp
+	<select class="form-control" ng-model="item.reward" disabled="disabled">
+	  <option>Clover</option>
+	  <option>Jelly Warm</option>
+	  <option>Life</option>
+	  <option>Block Buster</option>
+	  <option>Pin Wheel</option>
+	  <!-- <option id="greet" ng-selected="selected">Greetings!</option>-->
+	</select>
+	
+	&nbsp&nbsp
+	<b>Count: </b> &nbsp
+	<input style="width:80px" type="text" class="form-control" ng-model="item.count" disabled="disabled" only-num>
+
+      </div>
+
+    </form>
+
+    <!--
+    <b>{{$index+1}} - </b>  &nbsp&nbsp  <b>스테이지:</b> {{item.stage}} &nbsp&nbsp <b>아이템:</b> {{item.reward}} &nbsp&nbsp <b>갯수:</b> {{item.count}} 
+    -->
+
+  </div>
+
+  <hr>
+  <h4><b>Challenge Left Time (도전 후 남은시간)</b></h4>
+  <form class="form-inline">
+
+    <div class="form-group">
+      <label for="exampleInputName2">설정: </label> &nbsp
+      <input style="width:80px" type="text" class="form-control" ng-model="left_time" disabled="disabled" only-num> <b>시간</b>
+    </div>
+  </form>
+  
+ 
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-success" ng-click="ok()">최종 제출</button>
+  <button class="btn btn-danger" ng-click="cancel()">취소</button>
+</div>
+
